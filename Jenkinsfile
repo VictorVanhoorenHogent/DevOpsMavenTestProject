@@ -13,6 +13,16 @@ pipeline{
                 url: "https://github.com/VictorVanhoorenHogent/DevOpsMavenTestProject.git"
             )         
             }
-        }      
+        }
+
+         stage('Unit test maven'){
+                    when { expression {  params.action == 'create' } }
+            steps{
+                script{
+                    
+
+                }       
+            }
+        }       
     }
 }
