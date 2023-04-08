@@ -64,7 +64,7 @@ pipeline {
             }
         }
 
-        stage('Docker BUild ECR : maven') {
+        stage('Docker Build ECR : maven') {
             when { expression {  params.action == 'create' } }
             steps {
                 script {
@@ -72,5 +72,25 @@ pipeline {
                 }
             }
         }
+
+           stage('Docker Image Scan: trivy ') {
+            when { expression { params.action == 'create' } }
+            steps {
+                script {
+                    dockerImageScan("${params.AwsRegion}", "${params.AwsAccountId}", "${params.EcrRepoName}")
+                }
+            }
+        }
+
+             stage('Docker Image Push: AWS_ECR ') {
+            when { expression { params.action == 'create' } }
+            steps {
+                script {
+                    dockerImagePush("${params.AwsRegion}", "${params.AwsAccountId}", "${params.EcrRepoName}")
+                }
+            }
+        }
+
+     
     }
 }
