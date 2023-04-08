@@ -46,6 +46,3 @@
 
 ```
 
-aws key: AKIAWRYUOSDHZN4MVFDM
-aws secret key: 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
-
