@@ -34,7 +34,7 @@ private_subnet_config = {
         aws_route_table_private_name = {
             Name="myprivateroute1"
             }
-    },
+    }
 
     subnet2 = {
         private_subnet_cidr = "192.168.192.0/18"
@@ -70,7 +70,7 @@ public_subnet_config = {
         public_subnet_publicip_onlaunch = true
 
         
-    },
+    }
 
     subnet2 = {
         public_subnet_cidr = "192.168.128.0/18"
