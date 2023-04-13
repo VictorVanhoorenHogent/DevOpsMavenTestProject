@@ -1,41 +1,57 @@
 vpc_cidr = "192.168.0.0/16"
 
-vpc_name = {Name = "Victor_vpc_test"}
+vpc_name = {
+    Name = "Victor_vpc_test"
+    }
 
 vpc_enable_dns_hostnames = true
 
 vpc_enable_dns_support = true
 
-aws_internet_gateway_name = {Name = "victorsgateway"}
+aws_internet_gateway_name = {
+    Name = "victorsgateway"
+    }
 
 private_subnet_config = {
     subnet1 = {
         private_subnet_cidr = "192.168.64.0/18"
-        private_subnet_tags = {"Name" = "private-eu-north-1a"
+        private_subnet_tags = {
+        "Name" = "private-eu-north-1a" 
         "kubernetes.io/cluster/eks" = "shared"
         "kubernetes.io/role/internal-elb" = 1
         }
         private_subnet_availability_zone = "eu-north-1a"
 
-        aws_eip_name = {Name="nat1"}
+        aws_eip_name = {
+            Name="nat1"
+            }
 
-        aws_nat_gateway_name = {Name="NAT1"}
+        aws_nat_gateway_name = {
+            Name="NAT1"
+            }
 
         aws_route_table_private_cidr = "0.0.0.0/0"
-        aws_route_table_private_name = {Name="myprivateroute1"}
+        aws_route_table_private_name = {
+            Name="myprivateroute1"
+            }
     }
 
     subnet2 = {
         private_subnet_cidr = "192.168.192.0/18"
-        private_subnet_tags = {"Name" = "private-eu-north-1b"
-        "kubernetes.io/cluster/eks" = "shared"
+        private_subnet_tags = {
+        "Name" = "private-eu-north-1b"
+        "kubernetes.io/cluster/eks" = "shared" 
         "kubernetes.io/role/internal-elb" = 1
         }
         private_subnet_availability_zone = "eu-north-1b"
 
-        aws_eip_name = {Name="nat2"}
+        aws_eip_name = {
+            Name="nat2"
+        }
 
-        aws_nat_gateway_name = {Name="NAT2"}
+        aws_nat_gateway_name = {
+            Name="NAT2"
+            }
 
         aws_route_table_private_cidr = "0.0.0.0/0"
         aws_route_table_private_name = {Name="myprivateroute2"}
@@ -69,7 +85,10 @@ public_subnet_config = {
 }
 
 aws_route_table_public_cidr = "0.0.0.0/0"
-aws_route_table_public_name = {Name="mypublicroute"}
+
+aws_route_table_public_name = {
+    Name="mypublicroute"
+    }
 
 aws_eks_cluster_name = "example"
 
@@ -85,7 +104,9 @@ aws_eks_node_group_force_update = false
   
 aws_eks_node_group_instance_type = ["t3.small"]
 
-aws_eks_node_group_role = {role = "nodes-general"}
+aws_eks_node_group_role = {
+    role = "nodes-general"
+    }
 
 aws_eks_node_group = "example"
 
