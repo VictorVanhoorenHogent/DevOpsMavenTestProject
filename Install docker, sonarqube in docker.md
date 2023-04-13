@@ -10,11 +10,7 @@
 
 - Install aws
 
-- Configure aws met de juiste waarden die je vindt bij de AWS IAM user (access key, secret key ...)
-
-- IAM user aanmaken zodat er gebruik kan worden gemaakt van aws console
-
-- Dan een policy koppelen aan de user zodat gij het wachtwoord kan opvragen
+- een policy maken om de aws zaken op te halen in de IAM console
 
 ```amazon
      {
@@ -46,3 +42,12 @@
 
 ```
 
+- AWS rol aanmaken waar je de policy aan koppelt
+
+- AWS rol koppelen aan de ec2 instance
+
+- installing amazon ecr credential helper 
+
+- export PATH=$PATH:/bin/docker-credential-ecr-login
+
+- changing ~/var/lib/jenkins/.docker/config.json via de pipeline 
