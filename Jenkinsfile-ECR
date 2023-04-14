@@ -8,12 +8,7 @@ pipeline {
         string(name: 'EcrRepoName', description: 'name of the ECR repository', defaultValue: 'victorwillem')
         string(name: 'AwsRegion', description: 'name of the AWS region', defaultValue: 'eu-north-1')
         string(name: 'AwsAccountId', description: 'name of the AWS account id', defaultValue: '450477592783')
-    }
-
-    environment {
-
-        access_key = credentials('AWS_ACCESS_KEY_ID')
-        secret_key = credentials('AWS_SECRET_ACCESS_KEY')
+        string(name: 'EKSClusterName', description: 'name of the EKS cluster', defaultValue: 'example')
     }
 
     stages {
@@ -102,15 +97,18 @@ pipeline {
             steps {
                 script {
                     dir('eks_module'){
-                        sh"""
-
-                            terraform init
-                            terraform plan  --var-file=./config/terraform.tfvars
-                            terraform apply --var-file=./config/terraform.tfvars --auto-approve
-
-                        """
+                        createEKSCluster()
                        
                     }
+                }
+            }
+        }
+
+         stage('Connect to the EKS cluster') {
+            when { expression { params.action == 'create' } }
+            steps {
+                script {
+                    connectToEKSCluster("${params.AwsRegion}","${params.EKSClusterName}")
                 }
             }
         }
