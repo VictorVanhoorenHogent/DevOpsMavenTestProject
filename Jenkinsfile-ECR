@@ -108,7 +108,7 @@ pipeline {
             when { expression { params.action == 'create' } }
             steps {
                 script {
-                    connectToEKSCluster("${params.AwsRegion}","${params.EKSClusterName}")
+                    connectToEKSCluster("${params.EKSClusterName}")
                 }
             }
         }
