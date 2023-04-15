@@ -17,7 +17,7 @@ private_subnet_config = {
         private_subnet_cidr = "192.168.64.0/18"
         private_subnet_tags = {
         "Name" = "private-eu-north-1a" 
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/example" = "shared"
         "kubernetes.io/role/internal-elb" = 1
         }
         private_subnet_availability_zone = "eu-north-1a"
@@ -40,7 +40,7 @@ private_subnet_config = {
         private_subnet_cidr = "192.168.192.0/18"
         private_subnet_tags = {
         "Name" = "private-eu-north-1b"
-        "kubernetes.io/cluster/eks" = "shared" 
+        "kubernetes.io/cluster/example" = "shared" 
         "kubernetes.io/role/internal-elb" = 1
         }
         private_subnet_availability_zone = "eu-north-1b"
