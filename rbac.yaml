@@ -1,0 +1,22 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: create_readpods
+rules:
+- apiGroups: ["*"]
+  resources: ["deployments", "configmaps","pods", "secrets","services"]
+  verbs: ["get","list","watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: create_readpods
+subjects:
+- kind: Group
+  name: create_readpods
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: create_readpods
+  apiGroup: rbac.authorization.k8s.io

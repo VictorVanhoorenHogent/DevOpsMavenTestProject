@@ -104,7 +104,7 @@ pipeline {
             }
         }
 
-         stage('Connect to the EKS cluster') {
+        stage('Connect to the EKS cluster') {
             when { expression { params.action == 'create' } }
             steps {
                 script {
@@ -112,6 +112,19 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy on EKS cluster') {
+            when { expression { params.action == 'create' } }
+            steps {
+                script {
+                   sh"""
+                    kubectl get pods
+                   """
+                }
+            }
+        }
+
+
 
 
 
