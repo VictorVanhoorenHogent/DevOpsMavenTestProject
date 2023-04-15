@@ -63,7 +63,7 @@ public_subnet_config = {
     subnet1 = {
         public_subnet_cidr = "192.168.0.0/18"
         public_subnet_tags = {"Name" = "public-eu-north-1a"
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/example" = "shared"
         "kubernetes.io/role/elb" = 1
         }
         public_subnet_availability_zone = "eu-north-1a"
@@ -75,7 +75,7 @@ public_subnet_config = {
     subnet2 = {
         public_subnet_cidr = "192.168.128.0/18"
         public_subnet_tags = {"Name" = "public-eu-north-1b"
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/example" = "shared"
         "kubernetes.io/role/elb" = 1
         }
         public_subnet_availability_zone = "eu-north-1b"
