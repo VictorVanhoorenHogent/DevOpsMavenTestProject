@@ -8,6 +8,10 @@ pipeline {
         string(name: 'ImageTag', description: 'tag of the docker build', defaultValue: 'v1')
         string(name: 'DockerHubUser', description: 'name of the Docker user', defaultValue: 'victorwillem')
     }
+
+    environment {
+        DOCKERHUBID = credentials('docker_hub_access_key')
+    }
     stages {
         stage('Git Checkout') {
             when { expression { params.action == 'create' } }
@@ -80,6 +84,15 @@ pipeline {
             steps {
                 script {
                     dockerImageScan("${params.ImageName}", "${params.ImageTag}", "${params.DockerHubUser}")
+                }
+            }
+        }
+
+        stage('Docker login: DockerHub ') {
+            when { expression { params.action == 'create' } }
+            steps {
+                script {
+                    dockerLogin("${params.DockerhubUser}", "$DOCKERHUBID")
                 }
             }
         }
