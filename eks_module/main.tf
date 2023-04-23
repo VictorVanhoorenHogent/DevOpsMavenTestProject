@@ -52,7 +52,7 @@ module "aws_eip" {
 module "aws_nat_gateway" {
     source = "./modules/aws_nat_gateway"
     depends_on = [
-      module.aws_eip,module.public_subnet
+      module.aws_eip, module.public_subnet
     ]
 
     for_each = var.private_subnet_config
@@ -130,7 +130,7 @@ module "aws_eks_node_group" {
   depends_on = [
     module.aws_eks_cluster, module.private_subnet
   ]
-  
+
   aws_eks_node_group_ami = var.aws_eks_node_group_ami
   aws_eks_node_group_capacity_type = var.aws_eks_node_group_capacity_type
   aws_eks_node_group_disk_size = var.aws_eks_node_group_disk_size
@@ -142,6 +142,15 @@ module "aws_eks_node_group" {
   aws_node_group_iam_role_name = var.aws_node_group_iam_role_name
 
 }
+
+module "aws_eks_helm_charts" {
+  source = "./modules/aws_helm_charts"
+  depends_on = [
+    module.aws_eks_node_group
+  ]
+  
+}
+
 
 
 

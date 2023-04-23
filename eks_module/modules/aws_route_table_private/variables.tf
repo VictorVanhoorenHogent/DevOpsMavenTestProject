@@ -13,5 +13,7 @@ variable "aws_nat_gateway_id" {
 
 variable "aws_route_table_private_name" {
     type = map(any)
-    default = {Name = "myprivateroute"}
+    default = {
+        Name = "myprivateroute"
+        }
 }

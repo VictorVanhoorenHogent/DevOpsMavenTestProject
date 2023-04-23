@@ -1,6 +1,6 @@
 @Library('my-shared-library') _
 pipeline {
-    agent any
+    agent { label 'ec2-fleet'}
 
     parameters {
         choice(name: 'action', choices:'create\ndelete', description: 'Choose create/Destroy')

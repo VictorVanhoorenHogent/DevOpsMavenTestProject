@@ -13,5 +13,7 @@ variable "aws_internet_gateway_id" {
 
 variable "aws_route_table_public_name" {
     type = map(any)
-    default = {Name = "mypublicroute"}
+    default = {
+        Name = "mypublicroute"
+        }
 }

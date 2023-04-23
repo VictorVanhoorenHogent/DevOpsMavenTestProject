@@ -1,53 +1,33 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
-  labels:
-    app: nginx
+  name: myjavaapp-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: myjavaapp
   template:
     metadata:
       labels:
-        app: nginx
+        app: myjavaapp
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - name: myjavaapp
+        image: 496157679619.dkr.ecr.us-east-1.amazonaws.com/vikashashoke:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: internal-nginx-service
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
-    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
-    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  name: myjavaapp-service
 spec:
   selector:
-    app: nginx
-  type: LoadBalancer
+    app: myjavaapp
   ports:
-    - protocol: TCP
-      port: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: external-nginx-service
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
-    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
-spec:
-  selector:
-    app: nginx
+  - name: http
+    port: 80
+    targetPort: 8080
   type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 80

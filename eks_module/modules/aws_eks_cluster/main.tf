@@ -59,3 +59,4 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_vpc_resource_controller" {
 
 
 
+

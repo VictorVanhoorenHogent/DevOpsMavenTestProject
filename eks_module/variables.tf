@@ -1,3 +1,10 @@
+variable "region" {
+    type = string
+    description = "region of the resources"
+    default = "eu-north-1"
+  
+}
+
 variable "private_subnet_cidr" {
     type = string
     default = "192.168.0.0/18"

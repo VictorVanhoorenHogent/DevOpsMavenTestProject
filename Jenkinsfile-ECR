@@ -69,7 +69,7 @@ pipeline {
             when { expression {  params.action == 'create' } }
             steps {
                 script {
-                    dockerBuildECR("${params.AwsRegion}", "${params.AwsAccountId}", "${params.EcrRepoName}")
+                    dockerBuildECR("${params.AwsRegion}", "${params.ImageTag}", "${params.AwsAccountId}", "${params.EcrRepoName}")
                 }
             }
         }
@@ -87,7 +87,7 @@ pipeline {
             when { expression { params.action == 'create' } }
             steps {
                 script {
-                    dockerImagePushECR("${params.AwsRegion}", "${params.AwsAccountId}", "${params.EcrRepoName}")
+                    dockerImagePushECR("${params.AwsRegion}", "${params.ImageTag}", "${params.AwsAccountId}", "${params.EcrRepoName}")
                 }
             }
         }
